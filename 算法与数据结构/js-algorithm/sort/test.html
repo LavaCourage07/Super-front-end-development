@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function quickSort(arr) {
+            const rec = () => {
+                if (!arr.length) { return [] }
+                if (arr.length === 1) { return arr }
+
+                const mid = arr[0]
+                const left = []
+                const right = []
+                for (let i = 1; i < arr.length; i++) {
+                    if (arr[i] < mid) {
+                        left.push(arr[i])
+                    } else {
+                        right.push(arr[i])
+                    }
+                    const leftRes = rec(left)
+                    const rightRes = rec(right)
+                }
+                return [...leftRes, mid, ...rightRes]
+            }
+            const res = rec(arr)
+            return res
+        }
+
+        const res = quickSort([2, 1, 5, 6, 13])
+        console.log(res)
+
+    </script>
+</body>
+
+</html>
